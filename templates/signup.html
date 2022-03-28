@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    User Registration
+{% endblock title %}
+
+{% block content %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>Your account doesn't have access to this page. To proceed,
+                please login with an account that has access.</p>
+        {% else %}
+            <p>Please login to see this page.</p>
+        {% endif %}
+    {% endif %}
+
+    <!-- for signup -->
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+
+            <!-- Icon -->
+            <div class="fadeIn first">
+            </div>
+
+            <!-- signup Form -->
+            <form method="post" action="signup" class="col-4 m-auto">
+                <h4 class="mt-5 justify-content-center ">User Registration</h4>
+
+                {% csrf_token %}
+                <input type="text" id="first_name" class="form-control" name="first_name"
+                       placeholder="enter first name"><br>
+                <input type="text" id="last_name" class="form-control" name="last_name" placeholder="enter last name"><br>
+                <input type="text" id="username" class="form-control" name="username" placeholder="enter an username"><br>
+                <input type="email" id="email" class="form-control" name="email" placeholder="enter email address"><br>
+                <input type="text" id="phone" class="form-control" name="phone" placeholder="enter phone number"><br>
+                <input type="password" id="password1" class="form-control" name="password1" placeholder="enter password"><br>
+                <input type="password" id="password2" class="form-control" name="password2" placeholder="confirm password"><br>
+             
+                <input type="submit" class="btn btn-primary" value="Sign Up">
+            </form>
+
+            <!-- Remind login -->
+            <div id="formFooter">
+                Already have an account? <a class="underlineHover" href="{% url 'login' %}"> Login</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- signup end -->
+
+{% endblock content %}
